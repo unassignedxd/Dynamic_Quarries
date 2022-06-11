@@ -1,9 +1,11 @@
 package com.github.dynamicquarries;
 
+import com.github.dynamicquarries.common.capability.quarrydata.IQuarryData;
 import com.github.dynamicquarries.common.registry.RegistryHandler;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
@@ -25,13 +27,18 @@ public class DynamicQuarries {
 
     public DynamicQuarries() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::registerCaps);
 
         MinecraftForge.EVENT_BUS.register(this);
         RegistryHandler.register();
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
+    }
+
+    private void registerCaps(final RegisterCapabilitiesEvent event) {
+        System.out.println("CAPS REGISTRY!");
+        event.register(IQuarryData.class);
     }
 }

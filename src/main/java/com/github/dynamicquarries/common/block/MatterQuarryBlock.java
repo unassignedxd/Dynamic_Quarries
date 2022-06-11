@@ -1,7 +1,7 @@
 package com.github.dynamicquarries.common.block;
 
 import com.github.dynamicquarries.common.block.blockentity.MatterQuarryBlockEntity;
-import com.github.dynamicquarries.common.registry.RegistryHandler;
+import com.github.dynamicquarries.common.registry.RegistryBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
@@ -25,6 +25,6 @@ public class MatterQuarryBlock extends BaseEntityBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return createTickerHelper(type, RegistryHandler.MATTER_QUARRY_BLOCK_ENTITY.get(), MatterQuarryBlockEntity::tick);
+        return createTickerHelper(type, RegistryBlock.MATTER_QUARRY_BLOCK_ENTITY.get(), MatterQuarryBlockEntity::tick);
     }
 }
